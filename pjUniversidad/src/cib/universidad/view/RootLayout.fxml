@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.RootLayoutController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="_Registros">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="_Mantenimientos">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleCarreraOveviewController" text="Carrera" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Postulante" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Usuario" />
+            </items>
+               <graphic>
+                  <Separator orientation="VERTICAL" prefHeight="15.0" />
+               </graphic>
+          </Menu>
+          <Menu mnemonicParsing="false" text="_Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Acerca de ..." />
+            </items>
+               <graphic>
+                  <Separator orientation="VERTICAL" prefHeight="15.0" />
+               </graphic>
+          </Menu>
+            <Menu mnemonicParsing="false" text="_Cerrar Sesión">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cambiar Usuario" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Desconectar" />
+               </items>
+               <graphic>
+                  <Separator orientation="VERTICAL" prefHeight="15.0" />
+               </graphic></Menu>
+        </menus>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </MenuBar>
+   </top>
+</BorderPane>

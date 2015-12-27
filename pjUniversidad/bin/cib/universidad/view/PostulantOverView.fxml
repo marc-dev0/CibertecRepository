@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.PostulantOverViewController">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <SplitPane dividerPositions="0.6443768996960486" orientation="VERTICAL" prefHeight="660.0" prefWidth="998.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="457.0">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" layoutX="146.0" prefHeight="421.0" prefWidth="718.0" text="Detalle Postulante">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="462.0">
+                                 <children>
+                                    <ButtonBar layoutX="440.0" layoutY="345.0" prefHeight="40.0" prefWidth="234.0">
+                                       <buttons>
+                                          <Button mnemonicParsing="false" onAction="#handleSave" text="Guardar" />
+                                          <Button mnemonicParsing="false" onAction="#handleDelete" text="Eliminar" />
+                                       </buttons>
+                                    </ButtonBar>
+                                    <Label layoutX="2.0" layoutY="9.0" text="Nombres:" AnchorPane.leftAnchor="-4.0">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="3.0" layoutY="59.0" text="Apellido Paterno:" AnchorPane.leftAnchor="-4.0">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="1.0" layoutY="109.0" text="Apellido Materno:" AnchorPane.leftAnchor="-4.0">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="11.0" layoutY="259.0" text="Teléfono Fijo:" AnchorPane.leftAnchor="-4.0">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="313.0" text="Teléfono Celular:" AnchorPane.leftAnchor="-4.0">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="namePostulantField" layoutX="14.0" layoutY="32.0" prefHeight="25.0" prefWidth="265.0" AnchorPane.leftAnchor="5.0" />
+                                    <TextField fx:id="lastNamePostulantField" layoutX="14.0" layoutY="82.0" prefHeight="25.0" prefWidth="265.0" AnchorPane.leftAnchor="5.0" />
+                                    <TextField fx:id="lastNameMotherPostulantField" layoutX="9.0" layoutY="132.0" prefHeight="25.0" prefWidth="265.0" AnchorPane.leftAnchor="5.0" />
+                                    <DatePicker fx:id="birthdatePostulantDatePicker" layoutX="331.0" layoutY="29.0" prefHeight="25.0" prefWidth="150.0" promptText="Seleccione Fecha" AnchorPane.leftAnchor="330.0" />
+                                    <TextField fx:id="telFijoPostulantField" layoutX="23.0" layoutY="282.0" AnchorPane.leftAnchor="5.0" />
+                                    <TextField fx:id="telCelPostulantField" layoutX="23.0" layoutY="332.0" AnchorPane.leftAnchor="5.0" />
+                                    <Label layoutX="332.0" layoutY="313.0" text="Sexo:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="331.0" layoutY="113.0" text="Departamento:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="departamentPostulantComboBox" layoutX="331.0" layoutY="133.0" prefHeight="25.0" prefWidth="232.0" promptText="Seleccione un Departamento" AnchorPane.leftAnchor="330.0" />
+                                    <Label layoutX="331.0" layoutY="163.0" text="Provincia:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="331.0" layoutY="213.0" text="Distrito:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="provincePostulantComboBox" layoutX="331.0" layoutY="183.0" prefHeight="25.0" prefWidth="208.0" promptText="Seleccione una Provincia" AnchorPane.leftAnchor="330.0" />
+                                    <ComboBox fx:id="districtPostulantComboBox" layoutX="331.0" layoutY="233.0" prefHeight="25.0" prefWidth="208.0" promptText="Seleccione un Distrito" AnchorPane.leftAnchor="330.0" />
+                                    <Label layoutX="331.0" layoutY="263.0" text="Dirección:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="adressPostulantField" layoutX="332.0" layoutY="282.0" prefHeight="25.0" prefWidth="322.0" AnchorPane.leftAnchor="330.0" />
+                                    <Label layoutX="331.0" layoutY="63.0" text="Correo electrónico:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="emailField" layoutX="331.0" layoutY="83.0" prefHeight="25.0" prefWidth="322.0" AnchorPane.leftAnchor="330.0" />
+                                    <Label layoutX="11.0" layoutY="209.0" text="Nro de Documento:" AnchorPane.leftAnchor="-4.0" />
+                                    <TextField fx:id="dniField" layoutX="23.0" layoutY="232.0" AnchorPane.leftAnchor="5.0" />
+                                    <Label layoutY="159.0" text="Tipo de Documento" AnchorPane.leftAnchor="-4.0" />
+                                    <ComboBox fx:id="documentTypeComboBox" layoutX="13.0" layoutY="182.0" prefHeight="25.0" prefWidth="259.0" promptText="Seleccione un Tipo de Documento" AnchorPane.leftAnchor="5.0" />
+                                    <Label layoutX="329.0" layoutY="9.0" text="Fecha de Nacimiento:">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Group fx:id="group" layoutX="376.0" layoutY="313.0">
+                                       <children>
+                                          <RadioButton fx:id="malePostulantRadioButton" mnemonicParsing="false" text="Masculino">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="GroupSex" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="femalePostulantRadioButton" layoutX="100.0" mnemonicParsing="false" text="Femenino" toggleGroup="$GroupSex" />
+                                       </children>
+                                    </Group>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </TitledPane>
+                        <ButtonBar layoutX="-240.0" layoutY="339.0" prefHeight="40.0" prefWidth="525.0">
+                           <buttons>
+                              <Button mnemonicParsing="false" onAction="#showRootLayout" text="Menú Principal" />
+                              <Button mnemonicParsing="false" onAction="#handleExit" text="SALIR" />
+                           </buttons>
+                           <padding>
+                              <Insets right="390.0" />
+                           </padding>
+                        </ButtonBar>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="492.0">
+                     <children>
+                        <TableView fx:id="postulantView" layoutX="-2.0" layoutY="-1.0" prefHeight="240.0" prefWidth="1000.0" tableMenuButtonVisible="true">
+                          <columns>
+                            <TableColumn fx:id="codeColumn" minWidth="-1.0" prefWidth="88.0" text="Código" />
+                            <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="150.0" text="Nombres" />
+                              <TableColumn fx:id="lastNameColumn" minWidth="-1.0" prefWidth="151.0" text="Apellidos" />
+                              <TableColumn fx:id="documentColumn" minWidth="-1.0" prefWidth="98.0" text="# Documento" />
+                              <TableColumn fx:id="telFijoColumn" minWidth="-1.0" prefWidth="81.0" text="Tel. Fijo" />
+                              <TableColumn fx:id="telCelularColumn" minWidth="-1.0" prefWidth="87.0" text="Tel. Celular" />
+                              <TableColumn fx:id="birthdayDateColumn" minWidth="-1.0" prefWidth="116.0" text="Fecha Nacimiento" />
+                              <TableColumn fx:id="adressColumn" minWidth="-1.0" prefWidth="143.0" text="Dirección" />
+                              <TableColumn fx:id="estateColumn" minWidth="-1.0" prefWidth="83.0" text="Estado" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+            <Button layoutX="4.0" layoutY="500.0" mnemonicParsing="false" onAction="#showRootLayout" prefHeight="0.0" prefWidth="96.0" text="Menú Principal" />
+            <Button layoutX="29.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleExit" text="SALIR" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

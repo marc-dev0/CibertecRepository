@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.RootLayoutController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="525.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#handleExit" text="SALIR" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets right="570.0" />
+         </padding>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="1008.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></ImageView>
+   </center>
+   <left>
+      <Pane prefHeight="560.0" prefWidth="195.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Mantenimientos">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showCarreraOverView" text="Carrera" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#showPostulantOverView" text="Postulante" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" onAction="#showMethodOverView" text="Procedimiento" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#showMethodTypeOverView" text="Tipo de Procedimiento" />
+              </items>
+            </MenuButton>
+            <MenuButton layoutX="14.0" layoutY="46.0" mnemonicParsing="false" text="Solicitudes">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showEntryFormOverView" text="Registro Ficha Inscripción" />
+              </items>
+            </MenuButton>
+            <MenuButton layoutX="14.0" layoutY="80.0" mnemonicParsing="false" text="Facturación">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showPayFormOverView" text="Pago Ficha" />
+              </items>
+            </MenuButton>
+            <MenuButton layoutX="14.0" layoutY="114.0" mnemonicParsing="false" text="Registro Académico">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showRecordNotes" text="Registro de Notas" />
+              </items>
+            </MenuButton>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

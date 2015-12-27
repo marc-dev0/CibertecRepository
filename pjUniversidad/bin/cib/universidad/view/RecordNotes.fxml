@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.RecordNotesOverViewController">
+   <children>
+      <TitledPane collapsible="false" prefHeight="286.0" prefWidth="333.0" text="Registro de Notas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="268.0" prefWidth="331.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="26.0" text="Código:" />
+                  <TextField editable="false" layoutX="122.0" layoutY="22.0" prefHeight="25.0" prefWidth="134.0" promptText="Código Postulante" />
+                  <Label layoutX="14.0" layoutY="59.0" text="Postulante:" />
+                  <TextField layoutX="122.0" layoutY="55.0" prefHeight="25.0" prefWidth="183.0" promptText="Nombre del Postulante" />
+                  <Label layoutX="14.0" layoutY="88.0" text="Fecha de Registro:" />
+                  <DatePicker layoutX="122.0" layoutY="84.0" prefHeight="25.0" prefWidth="174.0" promptText="Fecha de Registro" />
+                  <Label layoutX="14.0" layoutY="122.0" text="Nota:" />
+                  <TextField fx:id="noteField" layoutX="122.0" layoutY="118.0" prefHeight="25.0" prefWidth="122.0" promptText="Nota del Postulante" />
+                  <Button layoutX="14.0" layoutY="152.0" mnemonicParsing="false" text="Guardar" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" prefHeight="448.0" prefWidth="578.0" text="Búsqueda de Postulantes" AnchorPane.rightAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="422.0" prefWidth="587.0">
+               <children>
+                  <TableView fx:id="postulantTableView" layoutX="14.0" layoutY="67.0" prefHeight="329.0" prefWidth="542.0">
+                     <columns>
+                        <TableColumn fx:id="codeColumn" prefWidth="75.0" text="Código" />
+                        <TableColumn fx:id="nameColumn" prefWidth="140.0" text="Nombres " />
+                        <TableColumn fx:id="lastNameColumn" prefWidth="206.0" text="Apellidos" />
+                        <TableColumn fx:id="estateColumn" minWidth="0.0" prefWidth="119.0" text="Estado" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="6.0" text="Filtros" />
+                  <Label layoutX="14.0" layoutY="34.0" text="Código:" />
+                  <TextField fx:id="codeField" layoutX="63.0" layoutY="30.0" prefHeight="25.0" prefWidth="178.0" promptText="Ingrese Código del Postulante" />
+                  <Label layoutX="271.0" layoutY="34.0" text="Carrera:" />
+                  <ComboBox fx:id="carreraComboBox" layoutX="316.0" layoutY="30.0" prefHeight="25.0" prefWidth="173.0" promptText="Seleccione una carrera" />
+                  <Button layoutX="505.0" layoutY="30.0" mnemonicParsing="false" text="Buscar" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
