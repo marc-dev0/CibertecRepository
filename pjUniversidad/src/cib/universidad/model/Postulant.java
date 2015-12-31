@@ -169,7 +169,7 @@ public class Postulant extends Person{
 			ResultSet rs = statement.executeQuery("select p.idPostulante, pe.nombres, pe.apellidoPaterno, pe.apellidoMaterno, " +
 													"p.nroDocumento, p.telefonoFijo, pe.telefonoCelular, p.fechaNacimiento, " +
 													"p.correo ,p.direccion, p.estado from postulante p " +
-												    "inner join Persona pe on pe.idPersona = p.idPersona;");
+												    "inner join persona pe on pe.idPersona = p.idPersona;");
 			while(rs.next()){
 				Postulant postulant = new Postulant();
 				postulant.setIdPostulante(rs.getInt("idPostulante"));

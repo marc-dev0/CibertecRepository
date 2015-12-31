@@ -39,7 +39,7 @@ public class MainApp extends Application {
 	public static String screen5ID = "screen5";
 	public static String screen5File = "view/EntryFormOverView.fxml";
 	public static String screen6ID = "screen6";
-	public static String screen6File = "view/PayFormOverView.fxml";
+	public static String screen6File = "view/PayFormOverview.fxml";
 	public static String screen7ID = "screen7";
 	public static String screen7File = "view/RecordNotes.fxml";
 	public static String screen8ID = "screen8";

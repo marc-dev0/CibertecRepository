@@ -23,7 +23,7 @@ public class MySqlConnection {
 		} catch (ClassNotFoundException e) {
 			System.err.println("Error" + e.getMessage());
 		}
-		cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pjUniversidad","root","H81eeptm");
+		cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pjuniversidad","root","H81eeptm");
 		return cn;
 
 	}
