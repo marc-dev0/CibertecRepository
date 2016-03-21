@@ -21,6 +21,7 @@ public class Carrera {
 	private final StringProperty descripcion;
 	private final BooleanProperty estado;
 	private int estateTrx;
+	
 	public Carrera(){
 		this(0, null,true);
 	}

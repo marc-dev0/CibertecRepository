@@ -150,6 +150,27 @@ public class Method{
 		}
 	}
 
+	public static void getListMethod(Connection connection, ObservableList<Method> list, int idMethodType){
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select idProcedimiento, descripcion from procedimiento "  
+																			 + "where idTipo_procedimiento = ?;");
+			
+			preparedStatement.setInt(1, idMethodType);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()){
+				Method method = new Method();
+				method.setIdMethod(rs.getInt("idProcedimiento"));
+				method.setDescription(rs.getString("descripcion"));
+				list.add(method);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public int saveMethod(Connection connection){
 
 		try {

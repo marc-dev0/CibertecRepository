@@ -70,7 +70,7 @@ public class Province{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
-			pstm = connection.prepareStatement("SELECT idProvincia, descripcion FROM Provincia where idDepartamento = ? "
+			pstm = connection.prepareStatement("SELECT idProvincia, descripcion FROM provincia where idDepartamento = ? "
 					+ "order by descripcion");
 
 			pstm.setInt(1, idDepartament);

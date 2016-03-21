@@ -65,7 +65,7 @@ public class Parent{
 	public int savePostulant(Connection connection){
 		int estate =0;
 		try {
-			PreparedStatement pstm = connection.prepareStatement("INSERT Apoderad "
+			PreparedStatement pstm = connection.prepareStatement("INSERT apoderad "
 					+ "(situacionLaboral, idPersona)"
 					+ " VALUES(?,?)");
 

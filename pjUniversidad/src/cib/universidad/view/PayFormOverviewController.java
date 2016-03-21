@@ -2,12 +2,15 @@ package cib.universidad.view;
 
 import java.beans.FeatureDescriptor;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import cib.universidad.MainApp;
 import cib.universidad.connection.MySqlConnection;
@@ -20,6 +23,7 @@ import cib.universidad.util.ControlledScreen;
 import cib.universidad.util.DecimalFormatUtil;
 import cib.universidad.util.FocusedUtil;
 import cib.universidad.util.ScreensController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,6 +56,8 @@ public class PayFormOverviewController implements Initializable, ControlledScree
 	@FXML private Label totalLabel;
 	@FXML private Button addButton;
 
+	PaymentDetail pm;
+	private int c = 0;
 	private MainApp mainApp = new MainApp();
 
 	@Override
@@ -101,7 +107,14 @@ public class PayFormOverviewController implements Initializable, ControlledScree
 
 		if(index != -1){
 
-			int idMethod = methodComboBox.getItems().get(index).getIdMethod(), quantity = (int) spinner.getValue();
+			int idMethod = methodComboBox.getItems().get(index).getIdMethod();
+			int quantity = (int) spinner.getValue();
+			
+			if(quantity == 0){
+				AlertUtil.showMessageValidateInput("La cantidad mÃ­nima ingresada es 1.");
+				return;
+			}
+				
 			double price = methodComboBox.getItems().get(index).getPriceMethod();
 
 			PaymentDetail p = new PaymentDetail();
@@ -109,10 +122,30 @@ public class PayFormOverviewController implements Initializable, ControlledScree
 			p.setQuantity(quantity);
 			p.setAmount(quantity * price);
 			p.setCorrelative(Integer.parseInt(correlativeLabel.getText()));
-			mainApp.getPaymentDetail().add(p);
-			detailPaymentView.setItems(mainApp.getPaymentDetail());
-
-			calculateTotal();
+			p.setMethod(new Method());
+			//PaymentDetail pd = null;
+			ObservableList<PaymentDetail> aux = mainApp.getPaymentDetail();
+			try {
+				if(detailPaymentView.getItems().size() > 0){
+					for (PaymentDetail paymentDetail : aux) {
+						//pd = paymentDetail;
+						if(paymentDetail.getIdMethod() == p.getIdMethod()) {
+							return;
+						} 
+						
+					}
+					mainApp.getPaymentDetail().add(p);
+				} else{
+					mainApp.getPaymentDetail().add(p);
+					detailPaymentView.setItems(mainApp.getPaymentDetail());
+				}
+				calculateTotal();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+			
 
 		} else {
 			AlertUtil.showMessageValidateInput("Seleccione un procedimiento, por favor.");
@@ -138,8 +171,19 @@ public class PayFormOverviewController implements Initializable, ControlledScree
 		FocusedUtil.setFocusOnTextField(nameLastNameField);
 
 	}
-
+	
+	@SuppressWarnings("static-access")
+	@FXML
+	private  void editColumn(){
+		itemColumn.editStartEvent();
+		idMethod.editStartEvent();	
+		amountColumn.editStartEvent();
+		nameMethodColumn.editStartEvent();
+		quantityColumn.editStartEvent();
+		itemColumn.getOnEditStart();
+	}
 	private void savePaymentDetail(){
+		
 		try {
 			if(isInputValid()){
 				for (PaymentDetail paymentDetail : mainApp.getPaymentDetail()) {
@@ -206,7 +250,7 @@ public class PayFormOverviewController implements Initializable, ControlledScree
 		String errorMessage = "";
 
 		if(nameLastNameField.getText() == null || nameLastNameField.getText().length() == 0)
-			errorMessage += "Nombres y apellidos inválidos.";
+			errorMessage += "Nombres y apellidos invï¿½lidos.";
 
 		if(dateRegister.getValue() == null)
 			errorMessage += "\nSeleccione la fecha de Registro, por favor.";

@@ -77,7 +77,6 @@ public class PostulantOverViewController implements Initializable, ControlledScr
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
 		this.myController = screenPage;
-
 	}
 
 	@Override
@@ -96,8 +95,8 @@ public class PostulantOverViewController implements Initializable, ControlledScr
 		//birthdayDateColumn.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
 		postulantView.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showPostulantDetails(newValue));
-
 		postulantView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 		try
 		{
 			//personID = Person.getPersonID(MySqlConnection.getConnection());
@@ -184,8 +183,6 @@ public class PostulantOverViewController implements Initializable, ControlledScr
 			});
 	}
 
-
-
 	@FXML
 	private void handleExit(){
 		System.exit(0);
@@ -227,6 +224,7 @@ public class PostulantOverViewController implements Initializable, ControlledScr
 		}
 
 	}
+
 	private void savePostulant(Postulant postulant){
 		Person person = new Person();
 		savePerson(person, "Postulant");
@@ -255,7 +253,7 @@ public class PostulantOverViewController implements Initializable, ControlledScr
 
 	private void savePerson(Person person, String typePerson){
 		try {
-			//verificar si hay algún error en el ingreso de datos
+			//verificar si hay algï¿½n error en el ingreso de datos
 
 			if(isInputValid()){
 				if(typePerson.equals("Postulant")){
@@ -298,39 +296,38 @@ public class PostulantOverViewController implements Initializable, ControlledScr
 
 	}
 
-
 	public boolean isInputValid(){
 		String errorMessage = "";
 
 		if(namePostulantField.getText() == null || namePostulantField.getText().length() == 0)
-			errorMessage += "\nNombre del Postulante inválido";
+			errorMessage += "\nNombre del Postulante invï¿½lido";
 
 		if(lastNamePostulantField.getText() == null || lastNamePostulantField.getText().length() == 0)
-			errorMessage += "\nApellido Paterno del Postulante inválido";
+			errorMessage += "\nApellido Paterno del Postulante invï¿½lido";
 
 //		if(lastNameMotherPostulantField.getText() == null || lastNameMotherPostulantField.getText().length() == 0)
-//			errorMessage += "\nApellido Materno del Postulante inválido";
+//			errorMessage += "\nApellido Materno del Postulante invï¿½lido";
 
 		if(dniField.getText() == null || dniField.getText().length() == 0)
-			errorMessage += "\nDNI inválido";
+			errorMessage += "\nDNI invï¿½lido";
 
 //		if(telFijoPostulantField.getText() == null || telFijoPostulantField.getText().length() == 0)
-//			errorMessage += "\nTeléfono Fijo inválido";
+//			errorMessage += "\nTelï¿½fono Fijo invï¿½lido";
 
 		if(telCelPostulantField.getText() == null || telCelPostulantField.getText().length() == 0)
-			errorMessage += "\nTeléfono Celular inválido";
+			errorMessage += "\nTelï¿½fono Celular invï¿½lido";
 
 		if(birthdatePostulantDatePicker.getValue() == null)
 			errorMessage += "\nSeleccione la Fecha de Nacimiento del Postulante";
 
 		if(adressPostulantField.getText() == null || adressPostulantField.getText().length() == 0)
-			errorMessage += "\nDireccion del Postulante inválido";
+			errorMessage += "\nDireccion del Postulante invï¿½lido";
 
 		if(emailField.getText() == null || emailField.getText().length() == 0)
-			errorMessage += "\nCorreo electrónico inválido";
+			errorMessage += "\nCorreo electrï¿½nico invï¿½lido";
 
 		if(namePostulantField.getText() == null || namePostulantField.getText().length() == 0)
-			errorMessage += "\nNombre del Postulante inválido";
+			errorMessage += "\nNombre del Postulante invï¿½lido";
 
 		if(errorMessage.length() == 0)
 			return true;

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.66" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.RecordNotesOverViewController">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.RecordNotesOverViewController">
    <children>
-      <TitledPane collapsible="false" layoutY="-1.0" prefHeight="451.0" prefWidth="391.0" text="Registro de Notas">
+      <TitledPane collapsible="false" layoutY="-1.0" prefHeight="451.0" prefWidth="376.0" text="Registro de Notas" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="25.0">
          <content>
             <AnchorPane prefHeight="364.0" prefWidth="387.0">
                <children>
@@ -24,7 +25,7 @@
             </AnchorPane>
          </content>
       </TitledPane>
-      <TitledPane animated="false" collapsible="false" prefHeight="448.0" prefWidth="614.0" text="Búsqueda de Postulantes" AnchorPane.rightAnchor="-5.0">
+      <TitledPane animated="false" collapsible="false" prefHeight="448.0" prefWidth="614.0" text="Búsqueda de Postulantes" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0">
          <content>
             <AnchorPane prefHeight="421.0" prefWidth="630.0">
                <children>
@@ -41,10 +42,19 @@
                   <TextField fx:id="codeField" layoutX="63.0" layoutY="30.0" prefHeight="25.0" prefWidth="178.0" promptText="Código del Postulante" />
                   <Label layoutX="257.0" layoutY="37.0" text="Carrera:" />
                   <ComboBox fx:id="carreraComboBox" layoutX="319.0" layoutY="31.0" prefHeight="26.0" prefWidth="200.0" promptText="Seleccione una carrera" />
-                  <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" text="Buscar" />
+                  <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" onAction="#searchPostulantByID" text="Buscar" />
                </children>
             </AnchorPane>
          </content>
       </TitledPane>
+      <ButtonBar layoutX="172.0" layoutY="642.0" prefHeight="40.0" prefWidth="525.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <buttons>
+            <Button mnemonicParsing="false" onAction="#showRootLayout" text="Menú Principal" />
+            <Button mnemonicParsing="false" onAction="#handleExit" text="SALIR" />
+         </buttons>
+         <padding>
+            <Insets right="500.0" />
+         </padding>
+      </ButtonBar>
    </children>
 </AnchorPane>

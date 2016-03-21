@@ -36,9 +36,9 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
 public class EntryFormOverView implements ControlledScreen,Initializable {
-	private int personID;
+	private int personID, count;
 	private ScreensController myController;
-	//Ficha Inscripción
+	//Ficha Inscripciï¿½n
 	@FXML private ComboBox<Carrera> carreraComboBox;
 	@FXML private DatePicker dateRegister;
 	@FXML private TextArea remarksField;
@@ -89,7 +89,6 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
 		this.myController = screenPage;
-
 	}
 
 	@FXML
@@ -149,6 +148,7 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 					}
 				}
 			});
+			
 			departamentCollegeComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Departament>() {
 				@Override
 				public void changed(ObservableValue<? extends Departament> observable, Departament oldValue,
@@ -257,29 +257,34 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 
 	@FXML
 	private void handleSave(ActionEvent event){
-		savePostulant(new Postulant());
-		saveParent(new Parent());
-		saveCollege(new College());
-		saveEntryForm(new EntryForm());
+		if(isInputValid()){
+			savePostulant(new Postulant());
+			saveParent(new Parent());
+			saveCollege(new College());
+			saveEntryForm(new EntryForm());
+		}
+	
 	}
 
+	@FXML 
+	private void handleClean(ActionEvent event){
+		
+	}
+	
 	private void saveEntryForm(EntryForm entryForm) {
 
 		try {
 
-			if(isInputValid()){
-				int index = carreraComboBox.getSelectionModel().getSelectedIndex();
+//			if(isInputValid()){
+//				int index = carreraComboBox.getSelectionModel().getSelectedIndex();
 				entryForm.setFechaRegistro(Date.valueOf(dateRegister.getValue()));
 				entryForm.setEstate("R");
 				entryForm.setObservacion(remarksField.getText());
 				entryForm.setIdPostulante(Postulant.getPostulantID(MySqlConnection.getConnection()));
-				entryForm.setIdCarrera(carreraComboBox.getItems().get(index).getCodigoCarrera());
 				entryForm.setIdColegio(College.getCollegeID(MySqlConnection.getConnection()));
 				entryForm.setIdUsuario(1);
-
-
-				AlertUtil.showAlertMessage(entryForm.saveEntryForm(MySqlConnection.getConnection()), 1);
-			}
+				AlertUtil.showAlertMessage(entryForm.saveEntryForm(MySqlConnection.getConnection()), 1, true);
+//			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -290,15 +295,15 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 	private void saveCollege(College college){
 		try {
 
-			if(isInputValid()){
+//			if(isInputValid()){
 				int index = districtPostulantComboBox.getSelectionModel().getSelectedIndex();
 				college.setNameCollege(collegeField.getText());
 				college.setEndDate(Date.valueOf(birthdateCollegeDatePicker.getValue()));
 				college.setAdressCollege(adressCollegeField.getText());
 				college.setIdDistrict(districtCollegeComboBox.getItems().get(index).getIdDistrict());
 				college.setIdPostulant(Postulant.getPostulantID(MySqlConnection.getConnection()));
-				AlertUtil.showAlertMessage(college.saveCollege(MySqlConnection.getConnection()), 1);
-			}
+				AlertUtil.showAlertMessage(college.saveCollege(MySqlConnection.getConnection()), 1, true);
+//			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -311,13 +316,13 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 
 		try {
 
-			if(isInputValid()){
+//			if(isInputValid()){
 				parent.setLaborSituation(laborSituationComboBox.getSelectionModel().getSelectedItem().toString());
 				parent.setIdPerson(person.getPersonID(MySqlConnection.getConnection()));
 
-				AlertUtil.showAlertMessage(parent.savePostulant(MySqlConnection.getConnection()), 1);
+				AlertUtil.showAlertMessage(parent.savePostulant(MySqlConnection.getConnection()), 1, true);
 
-			}
+//			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -328,10 +333,11 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 		savePerson(person, "Postulant");
 		try {
 
-			if(isInputValid()){
+//			if(isInputValid()){
 				int index = documentTypeComboBox.getSelectionModel().getSelectedIndex();
 				int index1 = districtPostulantComboBox.getSelectionModel().getSelectedIndex();
-
+				int index2 = carreraComboBox.getSelectionModel().getSelectedIndex();
+				
 				postulant.setIdDocumentType(documentTypeComboBox.getItems().get(index).getIdDocumentType());
 				postulant.setNroDocumento(dniField.getText());
 				postulant.setPhoneNumber(telFijoPostulantField.getText());
@@ -340,10 +346,11 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 				postulant.setIdDistrict(districtPostulantComboBox.getItems().get(index1).getIdDistrict());
 				postulant.setAdress(adressPostulantField.getText());
 				postulant.setIdPersona(person.getPersonID(MySqlConnection.getConnection()));
+				postulant.setIdCareer(carreraComboBox.getItems().get(index2).getCodigoCarrera());
 				postulant.setEstate("E");
-				AlertUtil.showAlertMessage(postulant.savePostulant(MySqlConnection.getConnection()), 1);
+				AlertUtil.showAlertMessage(postulant.savePostulant(MySqlConnection.getConnection()), 1, true);
 
-			}
+//			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -351,9 +358,9 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 
 	private void savePerson(Person person, String typePerson){
 		try {
-			//verificar si hay algún error en el ingreso de datos
+			//verificar si hay algï¿½n error en el ingreso de datos
 
-			if(isInputValid()){
+//			if(isInputValid()){
 				//Person c = new Person();
 				//c.setIdMethodType(Integer.parseInt(idCodigoField.getText()));
 				//person.setIdPerson(person.getIdPerson());
@@ -363,27 +370,28 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 					person.setLastNameMother(lastNameMotherPostulantField.getText());
 					person.setCellNumber(telCelPostulantField.getText());
 					person.setSex(postulantSelectionSex);
-					AlertUtil.showAlertMessage(person.savePerson(MySqlConnection.connect()), 1);
+					AlertUtil.showAlertMessage(person.savePerson(MySqlConnection.connect()), 1, true);
 				} else if(typePerson.equals("Parent")){
 					person.setName(nameParentField.getText());
 					person.setLastName(lastNameParentField.getText());
 					person.setLastNameMother(lastNameMotherParentField.getText());
 					person.setCellNumber(telCelParentField.getText());
 					person.setSex(parentSelectionSex);
-					AlertUtil.showAlertMessage(person.savePerson(MySqlConnection.connect()), 1);
+					AlertUtil.showAlertMessage(person.savePerson(MySqlConnection.connect()), 1, true);
 				} else {
 					return;
 				}
 
 				//listarMethodType();
 
-			} else{
-				FocusedUtil.setFocusOnTextField(namePostulantField);
-				return;
-			}
+//			} else{
+//				FocusedUtil.setFocusOnTextField(namePostulantField);
+//				return;
+//			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -397,31 +405,31 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 			errorMessage += "\nSeleccione una carrera, por favor.";
 
 		if(namePostulantField.getText() == null || namePostulantField.getText().length() == 0)
-			errorMessage += "\nNombre del Postulante inválido";
+			errorMessage += "\nNombre del Postulante invï¿½lido";
 
 		if(lastNamePostulantField.getText() == null || lastNamePostulantField.getText().length() == 0)
-			errorMessage += "\nApellido Paterno del Postulante inválido";
+			errorMessage += "\nApellido Paterno del Postulante invï¿½lido";
 
 //		if(lastNameMotherPostulantField.getText() == null || lastNameMotherPostulantField.getText().length() == 0)
-//			errorMessage += "\nApellido Materno del Postulante inválido";
+//			errorMessage += "\nApellido Materno del Postulante invï¿½lido";
 
 		if(dniField.getText() == null || dniField.getText().length() == 0)
-			errorMessage += "\nDNI inválido";
+			errorMessage += "\nDNI invï¿½lido";
 
 //		if(telFijoPostulantField.getText() == null || telFijoPostulantField.getText().length() == 0)
-//			errorMessage += "\nTeléfono Fijo inválido";
+//			errorMessage += "\nTelï¿½fono Fijo invï¿½lido";
 
 		if(telCelPostulantField.getText() == null || telCelPostulantField.getText().length() == 0)
-			errorMessage += "\nTeléfono Celular inválido";
+			errorMessage += "\nTelï¿½fono Celular invï¿½lido";
 
 		if(birthdatePostulantDatePicker.getValue() == null)
 			errorMessage += "\nSeleccione la Fecha de Nacimiento del Postulante";
 
 		if(adressPostulantField.getText() == null || adressPostulantField.getText().length() == 0)
-			errorMessage += "\nDireccion del Postulante inválido";
+			errorMessage += "\nDireccion del Postulante invï¿½lido";
 
 		if(emailField.getText() == null || emailField.getText().length() == 0)
-			errorMessage += "\nCorreo electrónico inválido";
+			errorMessage += "\nCorreo electrï¿½nico invï¿½lido";
 
 		if(departamentPostulantComboBox.getSelectionModel().getSelectedIndex() == -1
 				|| departamentCollegeComboBox.getSelectionModel().getSelectedIndex() == -1)
@@ -436,20 +444,20 @@ public class EntryFormOverView implements ControlledScreen,Initializable {
 			errorMessage += "\nSeleccione un Distrito, por favor.";
 
 		if(namePostulantField.getText() == null || namePostulantField.getText().length() == 0)
-			errorMessage += "\nNombre del Postulante inválido";
+			errorMessage += "\nNombre del Postulante invï¿½lido";
 
 		if(nameParentField.getText() == null || nameParentField.getText().length() == 0)
-			errorMessage += "\nNombre del Apoderdo inválido";
+			errorMessage += "\nNombre del Apoderdo invï¿½lido";
 
 		if(lastNameParentField.getText() == null || lastNameParentField.getText().length() == 0)
-			errorMessage += "\nApellido Paterno del Apoderado inválido";
+			errorMessage += "\nApellido Paterno del Apoderado invï¿½lido";
 
 		if(laborSituationComboBox.getSelectionModel().getSelectedIndex() == -1)
-			errorMessage += "\nSeleccione una situación laboral, por favor.";
+			errorMessage += "\nSeleccione una situaciï¿½n laboral, por favor.";
 
 		if((!femalePostulantRadioButton.isSelected() && !malePostulantRadioButton.isSelected())
 				|| (!femaleParentRadioButton.isSelected() && !maleParentRadioButton.isSelected()))
-			errorMessage += "\nSeleccione el género, por favor.";
+			errorMessage += "\nSeleccione el gï¿½nero, por favor.";
 
 		if(errorMessage.length() == 0)
 			return true;

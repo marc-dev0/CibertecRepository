@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="487.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.PayFormOverviewController">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.PayFormOverviewController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Universidad Jorge Basadre" />
-      <Label layoutX="14.0" layoutY="44.0" text="Nombres y Apellidos:" />
-      <TextField fx:id="nameLastNameField" layoutX="139.0" layoutY="40.0" prefHeight="25.0" prefWidth="251.0" promptText="Ingrese Nombres y Apellidos" />
-      <Label layoutX="14.0" layoutY="80.0" text="Fecha de Pago:" />
-      <DatePicker fx:id="dateRegister" layoutX="139.0" layoutY="73.0" promptText="Seleccione fecha" />
-      <TitledPane animated="false" collapsible="false" layoutX="509.0" layoutY="14.0" prefHeight="85.0" prefWidth="202.0" text="BOLETA DE VENTA" textAlignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="48.0" layoutY="6.0" text="RUC: 10502444212" />
-                  <Label layoutX="8.0" layoutY="31.0" text="Serie:" />
-                  <Label fx:id="correlativeLabel" layoutX="86.0" layoutY="31.0" />
-                  <Label layoutX="41.0" layoutY="31.0" text="001" />
-                  <Label layoutX="63.0" layoutY="31.0" text="-" />
-               </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
-      <TableView fx:id="detailPaymentView" layoutX="14.0" layoutY="149.0" prefHeight="277.0" prefWidth="697.0" tableMenuButtonVisible="true">
-        <columns>
-          <TableColumn fx:id="itemColumn" prefWidth="75.0" text="Item" />
-            <TableColumn fx:id="idMethod" prefWidth="75.0" text="Metodo ID" visible="false" />
-          <TableColumn fx:id="nameMethodColumn" prefWidth="402.0" text="Descripción" />
-            <TableColumn fx:id="quantityColumn" minWidth="9.0" prefWidth="63.0" text="Cantidad" />
-            <TableColumn fx:id="amountColumn" prefWidth="143.0" text="Importe" />
-        </columns>
-      </TableView>
-      <Button layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#showRootLayout" text="Menú Principal" AnchorPane.bottomAnchor="5.0" />
-      <Button layoutX="672.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleExit" text="Salir" AnchorPane.bottomAnchor="5.0" />
-      <Button layoutX="367.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleSave" text="Guardar" AnchorPane.bottomAnchor="5.0" />
-      <Button layoutX="300.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleCleanControls" text="Nuevo" AnchorPane.bottomAnchor="5.0" />
-      <Button fx:id="addButton" layoutX="652.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleAdd" text="Agregar" />
-      <Label layoutX="14.0" layoutY="112.0" text="Procedimiento:" />
-      <ComboBox fx:id="methodComboBox" layoutX="139.0" layoutY="108.0" prefHeight="25.0" prefWidth="211.0" promptText="Seleccione un Procedimiento" />
-      <Label layoutX="531.0" layoutY="112.0" text="Cantidad:" />
-      <Spinner fx:id="spinner" editable="true" layoutX="585.0" layoutY="108.0" prefHeight="25.0" prefWidth="59.0" />
-      <Label layoutX="596.0" layoutY="435.0" text="Total:" />
-      <Label fx:id="totalLabel" layoutX="682.0" layoutY="435.0" text="Label" />
+      <AnchorPane layoutX="185.0" prefHeight="508.0" prefWidth="802.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <Label layoutX="37.0" layoutY="16.0" text="Universidad Jorge Basadre" AnchorPane.leftAnchor="37.0" />
+            <Label layoutX="37.0" layoutY="46.0" text="Nombres y Apellidos:" AnchorPane.leftAnchor="37.0" />
+            <TextField fx:id="nameLastNameField" layoutX="237.0" layoutY="42.0" prefHeight="25.0" prefWidth="251.0" promptText="Nombres y Apellidos" AnchorPane.leftAnchor="237.0" />
+            <Label layoutX="37.0" layoutY="82.0" text="Fecha de Pago:" AnchorPane.leftAnchor="37.0" />
+            <DatePicker fx:id="dateRegister" layoutX="237.0" layoutY="75.0" promptText="Seleccione fecha" AnchorPane.leftAnchor="237.0" />
+            <Label layoutX="37.0" layoutY="114.0" text="Procedimiento:" AnchorPane.leftAnchor="37.0" />
+            <ComboBox fx:id="methodComboBox" layoutX="237.0" layoutY="110.0" prefHeight="25.0" prefWidth="211.0" promptText="Seleccione un Procedimiento" AnchorPane.leftAnchor="237.0" />
+            <TitledPane animated="false" collapsible="false" layoutX="533.0" layoutY="13.0" prefHeight="85.0" prefWidth="202.0" text="BOLETA DE VENTA" textAlignment="CENTER" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="13.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="48.0" layoutY="6.0" text="RUC: 10502444212" />
+                        <Label layoutX="8.0" layoutY="31.0" text="Serie:" />
+                        <Label fx:id="correlativeLabel" layoutX="86.0" layoutY="31.0" />
+                        <Label layoutX="41.0" layoutY="31.0" text="001" />
+                        <Label layoutX="63.0" layoutY="31.0" text="-" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <Button fx:id="addButton" layoutX="663.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleAdd" text="Agregar" AnchorPane.leftAnchor="663.0" />
+            <Label layoutX="523.0" layoutY="123.0" text="Cantidad:" AnchorPane.leftAnchor="523.0" />
+            <Spinner fx:id="spinner" editable="true" layoutX="598.0" layoutY="117.0" prefHeight="25.0" prefWidth="59.0" AnchorPane.leftAnchor="598.0" />
+            <TableView fx:id="detailPaymentView" editable="true" layoutX="37.0" layoutY="167.0" prefHeight="277.0" prefWidth="697.0">
+               <columns>
+                  <TableColumn fx:id="itemColumn" onEditStart="#editColumn" prefWidth="75.0" text="Item" />
+                  <TableColumn fx:id="idMethod" prefWidth="75.0" text="Metodo ID" visible="false" />
+                  <TableColumn fx:id="nameMethodColumn" onEditStart="#editColumn" prefWidth="402.0" text="Descripción" />
+                  <TableColumn fx:id="quantityColumn" minWidth="9.0" onEditStart="#editColumn" prefWidth="63.0" text="Cantidad" />
+                  <TableColumn fx:id="amountColumn" onEditStart="#editColumn" prefWidth="156.0" text="Importe" />
+               </columns>
+            </TableView>
+            <Label layoutX="622.0" layoutY="460.0" text="Total:" />
+            <Label fx:id="totalLabel" layoutX="698.0" layoutY="460.0" />
+            <Button layoutX="37.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="173.0" text="Guardar" AnchorPane.bottomAnchor="39.0" />
+            <Button layoutX="216.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleCleanControls" prefHeight="26.0" prefWidth="139.0" text="Nuevo" AnchorPane.bottomAnchor="39.0" />
+         </children>
+      </AnchorPane>
+      <ButtonBar layoutX="162.0" layoutY="632.0" prefHeight="40.0" prefWidth="525.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <buttons>
+            <Button mnemonicParsing="false" onAction="#showRootLayout" text="Menú Principal" />
+            <Button mnemonicParsing="false" onAction="#handleExit" text="SALIR" />
+         </buttons>
+         <padding>
+            <Insets right="500.0" />
+         </padding>
+      </ButtonBar>
    </children>
 </AnchorPane>

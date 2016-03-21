@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.66" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cib.universidad.view.RequirementOverViewController">
+   <children>
+      <BorderPane prefHeight="580.0" prefWidth="1200.0">
+         <bottom>
+            <ButtonBar prefHeight="40.0" prefWidth="525.0" BorderPane.alignment="BOTTOM_CENTER">
+               <buttons>
+                  <Button mnemonicParsing="false" onAction="#showRootLayout" text="Menú Principal" />
+                  <Button mnemonicParsing="false" onAction="#handleExit" text="SALIR" />
+               </buttons>
+               <padding>
+                  <Insets right="500.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </ButtonBar>
+         </bottom>
+         <center>
+            <SplitPane dividerPositions="0.5" prefHeight="450.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="366.0">
+                     <children>
+                        <Label text="Detalle Requisito" underline="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                           <buttons>
+                              <Button mnemonicParsing="false" onAction="#handleSave" text="Guardar" />
+                              <Button mnemonicParsing="false" onAction="#handleUpdate" text="Actualizar" />
+                              <Button mnemonicParsing="false" onAction="#handleDelete" text="Eliminar" />
+                           </buttons>
+                        </ButtonBar>
+                        <GridPane layoutX="168.0" layoutY="66.0" prefHeight="293.0" prefWidth="585.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="132.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="453.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="252.0" minHeight="0.0" prefHeight="214.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Código:" />
+                              <Label text="Descripción:" GridPane.rowIndex="2" />
+                              <TextField fx:id="idCodigoField" editable="false" promptText="Código Autogenerado" GridPane.columnIndex="1" />
+                              <TextArea fx:id="descripcionField" prefHeight="131.0" prefWidth="292.0" promptText="Descripción del Requisito" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Procedimiento:" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="methodComboBox" prefHeight="26.0" prefWidth="303.0" promptText="Escoja el procedimiento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="RequirementTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <columns>
+                              <TableColumn fx:id="idCodigoColumn" prefWidth="111.0" text="Código" />
+                              <TableColumn fx:id="descripcionColumn" prefWidth="472.0" text="Requisito" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

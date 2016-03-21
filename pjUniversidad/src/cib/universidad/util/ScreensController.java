@@ -35,8 +35,7 @@ public class ScreensController extends StackPane {
 	public Node getScreen(String name){
 		return screens.get(name);
 	}
-
-
+	
 	//Loads the fxml file, add the screen to the screen collection and finally
 	//ijects the screenPane to the Controller
 	public boolean loadScreen(String name, String resource){

@@ -1,8 +1,6 @@
 package cib.universidad;
 
 import java.io.IOException;
-import java.util.Observable;
-
 import cib.universidad.model.Carrera;
 import cib.universidad.model.Departament;
 import cib.universidad.model.District;
@@ -12,6 +10,7 @@ import cib.universidad.model.MethodType;
 import cib.universidad.model.PaymentDetail;
 import cib.universidad.model.Postulant;
 import cib.universidad.model.Province;
+import cib.universidad.model.Requirement;
 import cib.universidad.util.ScreensController;
 import cib.universidad.view.CarreraOverviewController;
 import javafx.application.Application;
@@ -44,13 +43,17 @@ public class MainApp extends Application {
 	public static String screen7File = "view/RecordNotes.fxml";
 	public static String screen8ID = "screen8";
 	public static String screen8File = "view/PostulantOverView.fxml";
+	public static String screen9ID = "screen9";
+	public static String screen9File = "view/RequerimentsViewer.fxml";
+	public static String screen10ID = "screen10";
+	public static String screen10File = "view/RequirementsOverView.fxml";
+	
 	//This method is automatically called when the application is launched from within the main method
 	//Stage -> BorderPane, Scenes.
 	//Scenes -> AnchorPane, Textbox, UI elements.
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private Group root = new Group();
-
 
 	private ObservableList<Carrera> carreraData = FXCollections.observableArrayList();
 	private ObservableList<MethodType> methodTypeData = FXCollections.observableArrayList();
@@ -61,7 +64,8 @@ public class MainApp extends Application {
 	private ObservableList<District> districtData = FXCollections.observableArrayList();
 	private ObservableList<PaymentDetail> paymentDetailData = FXCollections.observableArrayList();
 	private ObservableList<Postulant> postulantData = FXCollections.observableArrayList();
-
+	private ObservableList<Requirement> requirementData = FXCollections.observableArrayList();
+	
 	private ObservableList<String> options = FXCollections.observableArrayList(
 			"Activo","Inactivo"
 			);
@@ -134,11 +138,15 @@ public class MainApp extends Application {
 	public ObservableList<Postulant> getPostulantData(){
 		return postulantData;
 	}
+	
+	public ObservableList<Requirement> getRequirementData(){
+		return requirementData;
+	}
 
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Examen Ordinario I");
+		this.primaryStage.setTitle("Menú Principal");
 
 		//initRootLayout();
 
@@ -154,6 +162,8 @@ public class MainApp extends Application {
 		mainContainer.loadScreen(MainApp.screen6ID, MainApp.screen6File);
 		mainContainer.loadScreen(MainApp.screen7ID, MainApp.screen7File);
 		mainContainer.loadScreen(MainApp.screen8ID, MainApp.screen8File);
+		mainContainer.loadScreen(MainApp.screen9ID, MainApp.screen9File);
+		mainContainer.loadScreen(MainApp.screen10ID, MainApp.screen10File);
 		mainContainer.setScreen(MainApp.screen1ID);
 
 		//Group root = new Group();
@@ -162,9 +172,6 @@ public class MainApp extends Application {
 		Scene scene = new Scene(root);
 		this.primaryStage.setScene(scene);
 		this.primaryStage.show();
-
-
-		//primaryStage.setMaximized(true);
 
 	}
 
@@ -207,7 +214,6 @@ public class MainApp extends Application {
 			//give the controller acces to the main app
 			CarreraOverviewController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-
 
 			dialogStage.showAndWait();
 

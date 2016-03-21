@@ -6,39 +6,44 @@ import javafx.scene.control.Alert.AlertType;
 public class AlertUtil {
 
 	private static Alert alert;
+	private static int count;
 
 	/**
-	 * Método que devuelve el mensaje correspondiente a la transacción realizada por el usuario
-	 * @param estate Enviar si la transacción insert, delete o update ha sido exitosa. Evalúa el estado de la transacción:  1 Éxito, 0 Fallido
-	 * @param typeTrx Enviar el tipo de transacción a ejecutar. 1 Insert, 2 Update o 3 Delete
+	 * Mï¿½todo que devuelve el mensaje correspondiente a la transacciï¿½n realizada por el usuario
+	 * @param estate Enviar si la transacciï¿½n insert, delete o update ha sido exitosa. Evalï¿½a el estado de la transacciï¿½n:  1 ï¿½xito, 0 Fallido
+	 * @param typeTrx Enviar el tipo de transacciï¿½n a ejecutar. 1 Insert, 2 Update o 3 Delete
 	 * @return
 	 */
-	public static boolean showAlertMessage(int estate, int typeTrx){
+	public static boolean showAlertMessage(int estate, int typeTrx, boolean mode){
 
 		if(estate == 1){
 
 			alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Información");
-			alert.setHeaderText("Éxito");
-
-			if(typeTrx == 1){
-				alert.setContentText("Registro satisfactorio");
-				alert.show();
-			} else if(typeTrx == 2){
-				alert.setContentText("Actualización satisfactoria");
-				alert.show();
-			} else {
-				alert.setContentText("Eliminación satisfactoria");
-				alert.show();
+			alert.setTitle("InformaciÃ³n");
+			alert.setHeaderText("Ã‰xito");
+			count++;
+			
+			if(mode){
+				if(typeTrx == 1 && count == 5){
+					alert.setContentText("Registro satisfactorio");
+					alert.show();
+				} else if(typeTrx == 2 && count == 5){
+					alert.setContentText("ActualizaciÃ³n satisfactoria");
+					alert.show();
+				} else if(typeTrx == 3 && count == 5){
+					alert.setContentText("EliminaciÃ³n satisfactoria");
+					alert.show();
+				}
+				return true;
 			}
-			return true;
+			
 
 		} else if(estate == 0){
 
 			alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Información");
+			alert.setTitle("Informaciï¿½n");
 			alert.setHeaderText("Error");
-			alert.setContentText("Ha ocurrido un error. Inténtelo nuevamente por favor.");
+			alert.setContentText("Ha ocurrido un error. Intï¿½ntelo nuevamente por favor.");
 			alert.show();
 			return false;
 
@@ -46,14 +51,72 @@ public class AlertUtil {
 
 		return false;
 	}
+	
+	public static boolean showAlertMessage(int estate, int typeTrx){
 
+		if(estate == 1){
+
+			alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("InformaciÃ³n");
+			alert.setHeaderText("Ã‰xito");
+
+			if(typeTrx == 1){
+				alert.setContentText("Registro satisfactorio");
+				alert.show();
+			} else if(typeTrx == 2){
+				alert.setContentText("ActualizaciÃ³n satisfactoria");
+				alert.show();
+			} else {
+				alert.setContentText("EliminaciÃ³n satisfactoria");
+				alert.show();
+			}
+			return true;
+
+		} else if(estate == 0){
+
+			alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Informaciï¿½n");
+			alert.setHeaderText("Error");
+			alert.setContentText("Ha ocurrido un error. Intï¿½ntelo nuevamente por favor.");
+			alert.show();
+			return false;
+
+		}
+
+		return false;
+	}
+	public static boolean showAlertMessage(int typeTrx){
+	
+		if(typeTrx == 4){
+			alert = new Alert(AlertType.ERROR);
+			alert.setTitle("InformaciÃ³n");
+			alert.setHeaderText("Error con la base de datos");
+			alert.setContentText("");
+			alert.show();
+		}
+		return false;
+	}
+
+	public static boolean showAlertMessage(int estateTrx, int typeTrx, String contentText){
+		
+		if(typeTrx == 4){
+			alert = new Alert(AlertType.ERROR);
+			alert.setTitle("InformaciÃ³n");
+			alert.setHeaderText("Error con la base de datos");
+			alert.setContentText(contentText);
+			alert.show();
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean isTableViewIsEmpty(int index, int rowCount){
 		alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Información");
+		alert.setTitle("Informaciï¿½n");
 		alert.setHeaderText("Advertencia");
 
 		if(index == -1){
-			alert.setContentText("No hay ningún registro seleccionado");
+			alert.setContentText("No hay ningï¿½n registro seleccionado");
 			alert.show();
 			return true;
 
@@ -68,7 +131,7 @@ public class AlertUtil {
 
 	public static void showMessageValidateInput(String errorMessage){
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Información");
+		alert.setTitle("Informaciï¿½n");
 		alert.setHeaderText("Error");
 		alert.setContentText(errorMessage);
 		alert.show();

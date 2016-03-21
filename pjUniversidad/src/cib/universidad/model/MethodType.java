@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import cib.universidad.util.AlertUtil;
 /* Java Bean
 * Clase: MethodType  */
 import javafx.beans.property.IntegerProperty;
@@ -15,9 +16,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class MethodType{
+	
 	private IntegerProperty idMethodType;
 	private StringProperty description;
-
+	
 	private int estateTrx;
 
 	public MethodType(Integer idMethodType, String description){
@@ -131,9 +133,14 @@ public class MethodType{
 
 			estateTrx = pstm.executeUpdate();
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e){
+			AlertUtil.showAlertMessage(estateTrx, 4, e.getMessage());
+
 		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw e;
+//		}
 
 		return estateTrx;
 	}

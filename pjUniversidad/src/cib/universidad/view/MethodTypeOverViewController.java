@@ -101,7 +101,7 @@ public class MethodTypeOverViewController implements ControlledScreen{
 			c.setDescription(descripcionField.getText());
 
 
-			//verificar si hay algún error en el ingreso de datos
+			//verificar si hay algï¿½n error en el ingreso de datos
 			if(isInputValid()){
 				AlertUtil.showAlertMessage(c.saveMethodType(MySqlConnection.connect()), 1);
 				listarMethodType();
@@ -157,11 +157,10 @@ public class MethodTypeOverViewController implements ControlledScreen{
 			    //Elimina la fila seleccionada del TableView
 			    methodTypeTable.getItems().remove(selectedIndex);
 
-				AlertUtil.showAlertMessage(c.deleteMethodType(MySqlConnection.connect()), 3);
-
+				//AlertUtil.showAlertMessage(c.deleteMethodType(MySqlConnection.connect()), 3);
+				c.deleteMethodType(MySqlConnection.connect());
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
 		}
 
@@ -171,7 +170,7 @@ public class MethodTypeOverViewController implements ControlledScreen{
 		String errorMessage = "";
 
 		if(descripcionField.getText() == null || descripcionField.getText().length() == 0)
-			errorMessage += "Descripción no válida";
+			errorMessage += "Descripciï¿½n no vï¿½lida";
 
 		if(errorMessage.length() == 0)
 			return true;

@@ -104,7 +104,7 @@ public class Person{
 	public int savePerson(Connection connection){
 		int estate =0;
 		try {
-			PreparedStatement pstm = connection.prepareStatement("INSERT PERSONA "
+			PreparedStatement pstm = connection.prepareStatement("INSERT persona "
 					+ "(nombres, apellidoPaterno, apellidomaterno, telefonoCelular, sexo)"
 					+ " VALUES(?,?,?,?,?)");
 

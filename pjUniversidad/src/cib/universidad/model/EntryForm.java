@@ -17,24 +17,23 @@ public class EntryForm{
 	private StringProperty estate;
 	private StringProperty observacion;
 	private IntegerProperty idPostulante;
-	private IntegerProperty idCarrera;
 	private IntegerProperty idColegio;
 	private IntegerProperty idUsuario;
 	private int estateTrx;
 
-	public EntryForm(Integer idFichaInscripcion, Date fechaRegistro, String estate, String observacion, Integer idPostulante, Integer idCarrera, Integer idColegio, Integer idUsuario){
+	public EntryForm(Integer idFichaInscripcion, Date fechaRegistro, String estate, String observacion, Integer idPostulante, Integer idColegio, Integer idUsuario){
 		this.idFichaInscripcion = new SimpleIntegerProperty(idFichaInscripcion);
 		this.fechaRegistro = fechaRegistro;
 		this.estate = new SimpleStringProperty(estate);
 		this.observacion = new SimpleStringProperty(observacion);
 		this.idPostulante = new SimpleIntegerProperty(idPostulante);
-		this.idCarrera = new SimpleIntegerProperty(idCarrera);
+//		this.idCarrera = new SimpleIntegerProperty(idCarrera);
 		this.idColegio = new SimpleIntegerProperty(idColegio);
 		this.idUsuario = new SimpleIntegerProperty(idUsuario);
 	}
 
 	public EntryForm(){
-		this(0, null, null, null, 0, 0, 0, 0);
+		this(0, null, null, null, 0, 0, 0);
 	}
 
 	public Integer getIdFichaInscripcion(){
@@ -77,13 +76,13 @@ public class EntryForm{
 		this.idPostulante.set(idPostulante);
 	}
 
-	public Integer getIdCarrera(){
-		return idCarrera.get();
-	}
-
-	public void setIdCarrera(Integer idCarrera){
-		this.idCarrera.set(idCarrera);
-	}
+//	public Integer getIdCarrera(){
+//		return idCarrera.get();
+//	}
+//
+//	public void setIdCarrera(Integer idCarrera){
+//		this.idCarrera.set(idCarrera);
+//	}
 
 	public Integer getIdColegio(){
 		return idColegio.get();
@@ -117,9 +116,9 @@ public class EntryForm{
 		return idPostulante;
 	}
 
-	public IntegerProperty idCarreraProperty(){
-		return idCarrera;
-	}
+//	public IntegerProperty idCarreraProperty(){
+//		return idCarrera;
+//	}
 
 	public IntegerProperty idColegioProperty(){
 		return idColegio;
@@ -133,17 +132,19 @@ public class EntryForm{
 
 		try {
 			PreparedStatement pstm = connection.prepareStatement("insert ficha_inscripcion"
-					+ "(fechaRegistro, estadoAutorizacion, obs, idPostulante, idCarrera, idColegio, idUsuario)"+
-						"VALUES(?, ?, ?, ?,?,?,?)");
+					+ "(fechaRegistro, estadoAutorizacion, obs, idPostulante, idColegio, idUsuario)"+
+						"VALUES(?, ?, ?, ?,?,?)");
 
 			pstm.setDate(1, this.fechaRegistro);
 			pstm.setString(2, this.estate.get());
 			pstm.setString(3, this.observacion.get());
 			pstm.setInt(4, this.idPostulante.get());
-			pstm.setInt(5, this.idCarrera.get());
-			pstm.setInt(6, this.idColegio.get());
-			pstm.setInt(7, this.idUsuario.get());
+//			pstm.setInt(5, this.idCarrera.get());
+			pstm.setInt(5, this.idColegio.get());
+			pstm.setInt(6, this.idUsuario.get());
 
+			estateTrx = pstm.executeUpdate();
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

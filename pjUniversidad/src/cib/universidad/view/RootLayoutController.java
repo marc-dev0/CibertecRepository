@@ -75,7 +75,15 @@ public class RootLayoutController implements ControlledScreen, Initializable{
 		myController.setScreen(MainApp.screen8ID);
 	}
 
+	@FXML 
+	private void showRequirementViewer(ActionEvent event){
+		myController.setScreen(MainApp.screen9ID);
+	}
 
+	@FXML 
+	private void showRequirementOverView(ActionEvent event){
+		myController.setScreen(MainApp.screen10ID);
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 

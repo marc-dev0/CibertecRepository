@@ -27,9 +27,11 @@ public class Postulant extends Person{
 	private IntegerProperty idPersona;
 	private IntegerProperty idDocumentType;
 	private IntegerProperty idDistrict;
+	private IntegerProperty idCareer;
 	private int estateTrx;
 
-	public Postulant(Integer idPostulante, String nroDocumento, String estate, String adress, Date birthDate, String phoneNumber, String email, Integer idPersona, Integer idDocumentType, Integer idDistrict){
+	public Postulant(Integer idPostulante, String nroDocumento, String estate, String adress, Date birthDate, String phoneNumber, String email,
+			Integer idPersona, Integer idDocumentType, Integer idDistrict, Integer idCareer){
 
 		this.idPostulante = new SimpleIntegerProperty(idPostulante);
 		this.nroDocumento = new SimpleStringProperty(nroDocumento);
@@ -41,10 +43,11 @@ public class Postulant extends Person{
 		this.idPersona = new SimpleIntegerProperty(idPersona);
 		this.idDocumentType = new SimpleIntegerProperty(idDocumentType);
 		this.idDistrict = new SimpleIntegerProperty(idDistrict);
+		this.idCareer = new SimpleIntegerProperty(idCareer);
 	}
 
 	public Postulant(){
-		this(0, null, null, null, null, null, null, 0, 0, 0);
+		this(0, null, null, null, null, null, null, 0, 0, 0, 0);
 	}
 
 	public Integer getIdPostulante(){
@@ -126,6 +129,14 @@ public class Postulant extends Person{
 	public void setIdDistrict(Integer idDistrict){
 		this.idDistrict.set(idDistrict);
 	}
+	
+	public Integer getIdCareer(){
+		return idCareer.get();
+	}
+	
+	public void setIdCareer(Integer idCareer){
+		this.idCareer.set(idCareer);
+	}
 
 	public IntegerProperty idPostulanteProperty(){
 		return idPostulante;
@@ -162,6 +173,10 @@ public class Postulant extends Person{
 	public IntegerProperty idDistrictProperty(){
 		return idDistrict;
 	}
+	
+	public IntegerProperty idCareerProperty(){
+		return idCareer;
+	}
 
 	public static void getListPostulant(Connection connection, ObservableList<Postulant> lista){
 		try {
@@ -190,14 +205,15 @@ public class Postulant extends Person{
 			e.printStackTrace();
 		}
 	}
+	
 
 	public int savePostulant(Connection connection){
 		int estate =0;
 		try {
 			PreparedStatement pstm = connection.prepareStatement(
-					"INSERT POSTULANTE(nroDocumento, estado, direccion, fechaNacimiento, "
-					+ "telefonoFijo, correo, idPersona, idTipoDocumento,idDistrito)"
-					+ "VALUES(?,?,?,?,?,?,?,?,?)");
+					"INSERT postulante(nroDocumento, estado, direccion, fechaNacimiento, "
+					+ "telefonoFijo, correo, idPersona, idTipoDocumento,idDistrito, idCarrera)"
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?)");
 
 			pstm.setString(1, this.nroDocumento.get());
 			pstm.setString(2, this.estate.get());
@@ -208,7 +224,8 @@ public class Postulant extends Person{
 			pstm.setInt(7, this.idPersona.get());
 			pstm.setInt(8, this.idDocumentType.get());
 			pstm.setInt(9, this.idDistrict.get());
-
+			pstm.setInt(10, this.idCareer.get());
+			
 			estate = pstm.executeUpdate();
 
 		} catch (Exception e) {
@@ -257,21 +274,20 @@ public class Postulant extends Person{
 		ObservableList<Postulant> aux = FXCollections.observableArrayList();
 		try {
 			PreparedStatement pstm = connection.prepareStatement("select p.idPostulante, pe.nombres, concat_ws" +
-					 "	(' ',pe.apellidoPaterno,pe.apellidoMaterno) 'Apellidos', p.estado from postulante p" +
-					 "inner join Persona pe on pe.idPersona = p.idPersona" +
-					 "inner join ficha_inscripcion fi on fi.idPostulante = p.idPostulante" +
-					 "where fi.idPostulante = ?;");
+					 "(' ',pe.apellidoPaterno,pe.apellidoMaterno) 'Apellidos', p.estado from postulante p " +
+					 "inner join persona pe on pe.idPersona = p.idPersona " +
+					 "where p.idPostulante = ?;");
 
 			pstm.setInt(1, this.idPostulante.get());
-
+			
 			ResultSet rs = pstm.executeQuery();
 
 			while(rs.next()){
 				Postulant postulant = new Postulant();
 				postulant.setIdPostulante(rs.getInt("idPostulante"));
-				postulant.setName("nombres");
-				postulant.setLastName("Apellidos");
-				postulant.setEstate("estado");
+				postulant.setName(rs.getString("nombres"));
+				postulant.setLastName(rs.getString("Apellidos"));
+				postulant.setEstate(rs.getString("estado"));
 				aux.add(postulant);
 			}
 		} catch (Exception e) {
@@ -281,4 +297,37 @@ public class Postulant extends Person{
 
 		return aux;
 	}
+	
+	public ObservableList<Postulant> getListPostulantByCareer(Connection connection, ObservableList<Postulant> lista, int idCareer){
+		//ObservableList<Postulant> aux = FXCollections.observableArrayList();
+		//lista = FXCollections.observableArrayList();
+		try {
+			PreparedStatement pstm = connection.prepareStatement("select p.idPostulante, pe.nombres," 
+					+ "concat_ws(' ', pe.apellidoPaterno, pe.apellidoMaterno) 'Apellidos'," 
+					+ "p.estado from postulante p "
+					+ "inner join persona pe on pe.idPersona = p.idPersona "
+					+ "inner join carrera c on c.idCarrera = p.idCarrera " 
+					+ "where c.idCarrera = ?");
+
+			pstm.setInt(1, idCareer);
+			System.out.println("Carrera: " + idCareer);
+			ResultSet rs = pstm.executeQuery();
+
+			while(rs.next()){
+				Postulant postulant = new Postulant();
+				postulant.setIdPostulante(rs.getInt("idPostulante"));
+				postulant.setName(rs.getString("nombres"));
+				postulant.setLastName(rs.getString("Apellidos"));
+				postulant.setEstate(rs.getString("estado"));
+				lista.add(postulant);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+
+		return lista;
+	}
+	
 }

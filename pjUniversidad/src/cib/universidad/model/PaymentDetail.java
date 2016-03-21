@@ -24,21 +24,31 @@ public class PaymentDetail{
 	private DoubleProperty amount;
 	private IntegerProperty idMethod;
 	private StringProperty nameMethod;
+	private Method method;
+	
 	private static int secuencial = 1;
 
-	public PaymentDetail(Integer item, Integer correlative, Integer quantity, Double amount, Integer idMethod){
+	public PaymentDetail(Integer item, Integer correlative, Integer quantity, Double amount, Integer idMethod, Method method){
 		this.item = new SimpleIntegerProperty(item);
 		this.correlative = new SimpleIntegerProperty(correlative);
 		this.quantity = new SimpleIntegerProperty(quantity);
 		this.amount = new SimpleDoubleProperty(amount);
 		this.idMethod = new SimpleIntegerProperty(idMethod);
+		this.method = method;
 	}
 
 	public PaymentDetail(){
-		this(secuencial, 0, 0, 0.0, 0);
+		this(secuencial, 0, 0, 0.0, 0, null);
 		secuencial++;
 	}
 
+	public Method getMethod(){
+		return method;
+	}
+	
+	public void setMethod(Method method){
+		this.method = method;
+	}
 	public Integer getItem(){
 		return item.get();
 	}
@@ -78,7 +88,7 @@ public class PaymentDetail{
 	public void setIdMethod(Integer idMethod){
 		this.idMethod.set(idMethod);
 	}
-
+	
 	public StringProperty getNameMethodProperty(){
 		try {
 			nameMethod = Method.getNameMethodxID(MySqlConnection.getConnection(), this.idMethod.get());
@@ -156,6 +166,7 @@ public class PaymentDetail{
 
 			estate = pstm.executeUpdate();
 
+			secuencial = 1;
 		} catch (Exception e) {
 			System.out.println("Error en PaymentDetail..." + e.getMessage());
 		}
